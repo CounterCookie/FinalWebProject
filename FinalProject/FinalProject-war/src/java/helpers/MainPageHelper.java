@@ -48,6 +48,11 @@ public class MainPageHelper {
                 resulttable += "<td>" + rs.getString(3) + "</td>";
                 String sql1 = "call channelLastTwitDateTime('" + rs.getInt(1) + "')";
                 rs1 = st1.executeQuery(sql1);
+                if (rs1.next()) {
+                    date = rs1.getDate(1);
+                    time = rs1.getTime(1);
+                }
+
                 if (date != null && time != null) {
                     resulttable += "<td>" + date + " " + time + "</td>";
                 } else {
