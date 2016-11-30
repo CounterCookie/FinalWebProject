@@ -55,12 +55,13 @@ public class MainPageHelper {
                 resulttable += "<td>" + date + " " + time + "</td>";
                 resulttable += "<td><a href='ChannelOps?channel=" + channelid + "&&user=" + user + "'>Unfollow</a></td>";
                 resulttable += "</tr>";
-                st1.close();
-                st.close();
-                rs1.close();
-                rs.close();
 
+                rs1.close();
             }
+            st1.close();
+            st.close();
+
+            rs.close();
 
             conn.close();
         } catch (ClassNotFoundException ex) {
@@ -150,11 +151,11 @@ public class MainPageHelper {
                 resulttable += "<td>Delete</td>";
                 resulttable += "</tr>";
                 rs1.close();
-                st.close();
-                st1.close();
-                rs.close();
-
             }
+
+            st.close();
+            st1.close();
+            rs.close();
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
