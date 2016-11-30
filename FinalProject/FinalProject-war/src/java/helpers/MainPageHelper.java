@@ -36,6 +36,7 @@ public class MainPageHelper {
             //Using Statement
             String sql = "call channelGetFollowing('" + user + "')";
             Statement st = conn.createStatement();
+            Statement st1 = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             ResultSet rs1 = null;
             Date date = null;
@@ -46,7 +47,7 @@ public class MainPageHelper {
                 resulttable += "<td>" + rs.getString(2) + "</td>";
                 resulttable += "<td>" + rs.getString(3) + "</td>";
                 String sql1 = "call channelLastTwitDateTime('" + rs.getInt(1) + "')";
-                rs1 = st.executeQuery(sql1);
+                rs1 = st1.executeQuery(sql1);
                 if (rs1 != null && rs1.next()) {
                     date = rs1.getDate(1);
                     time = rs1.getTime(1);
@@ -56,9 +57,9 @@ public class MainPageHelper {
                 resulttable += "</tr>";
 
             }
-              st.close();
-        rs1.close();
-        rs.close();
+            st.close();
+            rs1.close();
+            rs.close();
 
             conn.close();
         } catch (ClassNotFoundException ex) {
@@ -72,7 +73,7 @@ public class MainPageHelper {
         } catch (IllegalAccessException ex) {
             Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+
         return resulttable;
     }
 
@@ -126,6 +127,7 @@ public class MainPageHelper {
             //Using Statement
             String sql = "call channelGetMyChannels('" + user + "')";
             Statement st = conn.createStatement();
+            Statement st1 = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             ResultSet rs1 = null;
             Date date = null;
@@ -134,7 +136,7 @@ public class MainPageHelper {
                 resulttable += "<tr>";
                 resulttable += "<td>" + rs.getString(2) + "</td>";
                 String sql1 = "call channelLastTwitDateTime(" + rs.getInt(1) + ")";
-                rs1 = st.executeQuery(sql1);
+                rs1 = st1.executeQuery(sql1);
                 if (rs1 != null && rs1.next()) {
                     date = rs1.getDate(1);
                     time = rs1.getTime(1);
@@ -146,11 +148,12 @@ public class MainPageHelper {
                 }
                 resulttable += "<td>Delete</td>";
                 resulttable += "</tr>";
-                rs1.close();
-                st.close();
-                rs.close();
-            }
 
+            }
+            rs1.close();
+            st.close();
+            st1.close();
+            rs.close();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {
