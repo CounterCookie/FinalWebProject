@@ -32,6 +32,7 @@ public class ChannelOps extends HttpServlet {
             throws ServletException, IOException {
         String channel = request.getParameter("channel");
         String user = request.getParameter("user");
+        String user1 = request.getParameter("user1");
         String channelID = request.getParameter("channelID");
         String newChannel= request.getParameter("newChannel");
         String message = "";
@@ -49,7 +50,7 @@ public class ChannelOps extends HttpServlet {
             response.sendRedirect("main.jsp?message="+message);
         }
         if(newChannel!=null&&!newChannel.equals("")){
-            csb.channelAdd(newChannel, user);
+            csb.channelAdd(newChannel, user1);
             message="Channel added";
             response.sendRedirect("main.jsp?message="+message);
         }
