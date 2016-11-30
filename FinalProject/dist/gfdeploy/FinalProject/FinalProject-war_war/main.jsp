@@ -14,6 +14,7 @@
     </head>
     <%
         String user1 =(String) session.getAttribute("user");
+        session.setAttribute("user1", user1);
     %>
     <body>
         <h1>Twit Main Page</h1>

@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import newBean.ChannelSLSB;
 
 /**
@@ -30,9 +31,9 @@ public class ChannelOps extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String channel = request.getParameter("channel");
         String user = request.getParameter("user");
-        String user1 = request.getParameter("user1");
         String channelID = request.getParameter("channelID");
         String newChannel= request.getParameter("newChannel");
         String message = "";
@@ -50,7 +51,7 @@ public class ChannelOps extends HttpServlet {
             response.sendRedirect("main.jsp?message="+message);
         }
         if(newChannel!=null&&!newChannel.equals("")){
-            csb.channelAdd(newChannel, user1);
+            csb.channelAdd(newChannel, (String)session.getAttribute("user1"));
             message="Channel added";
             response.sendRedirect("main.jsp?message="+message);
         }
