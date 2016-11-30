@@ -116,7 +116,6 @@ public class MainPageHelper {
     public String displayOwnedChanell(String user){
          String resulttable = "";
         try {
-            resulttable += "<th>Channel Name</th><th>Username</th><th>Follow</th>";
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
@@ -132,13 +131,18 @@ public class MainPageHelper {
             while (rs.next()) {
                 resulttable += "<tr>";
                 resulttable += "<td>" + rs.getString(2) + "</td>";
-                String sql1 = "call channelLastTwitDateTime('" + rs.getInt(1) + "')";
+                String sql1 = "call channelLastTwitDateTime(" + rs.getInt(1) + ")";
                 rs1 = st.executeQuery(sql1);
                 if (rs1 != null && rs1.next()) {
                     date = rs1.getDate(1);
                     time = rs1.getTime(1);
                 }
+                if(date!=null&&time!=null){
                 resulttable += "<td>" + date + " " + time + "</td>";
+                }
+                else{
+                    resulttable += "<td>No twits</td>";
+                }
                 resulttable += "<td>Delete</td>";
                 resulttable += "</tr>";
                 rs1.close();
