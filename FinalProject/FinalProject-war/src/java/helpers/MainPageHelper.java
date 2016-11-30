@@ -42,27 +42,24 @@ public class MainPageHelper {
             Time time = null;
             while (rs.next()) {
                 int channelid = rs.getInt(1);
-                String channelName = rs.getString(2);
-                String owner = rs.getString(3);
                 resulttable += "<tr>";
-                resulttable += "<td>" + channelName + "</td>";
-                resulttable += "<td>" + owner + "</td>";
-                rs.close();
-                String sql1 = "call channelLastTwitDateTime('" + channelid + "')";
+                resulttable += "<td>" + rs.getString(2) + "</td>";
+                resulttable += "<td>" + rs.getString(3) + "</td>";
+                String sql1 = "call channelLastTwitDateTime('" + rs.getInt(1) + "')";
                 rs1 = st.executeQuery(sql1);
-                
                 if (rs1 != null && rs1.next()) {
                     date = rs1.getDate(1);
                     time = rs1.getTime(1);
                 }
-                
                 resulttable += "<td>" + date + " " + time + "</td>";
                 resulttable += "<td><a href='ChannelOps?channel=" + channelid + "&&user=" + user + "'>Unfollow</a></td>";
                 resulttable += "</tr>";
 
             }
-            rs1.close();
-            st.close();
+              st.close();
+        rs1.close();
+        rs.close();
+
             conn.close();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
@@ -138,12 +135,10 @@ public class MainPageHelper {
                 resulttable += "<td>" + rs.getString(2) + "</td>";
                 String sql1 = "call channelLastTwitDateTime(" + rs.getInt(1) + ")";
                 rs1 = st.executeQuery(sql1);
-                
                 if (rs1 != null && rs1.next()) {
                     date = rs1.getDate(1);
                     time = rs1.getTime(1);
                 }
-                rs1.close();
                 if (date != null && time != null) {
                     resulttable += "<td>" + date + " " + time + "</td>";
                 } else {
@@ -151,7 +146,7 @@ public class MainPageHelper {
                 }
                 resulttable += "<td>Delete</td>";
                 resulttable += "</tr>";
-               
+                rs1.close();
                 st.close();
                 rs.close();
             }
