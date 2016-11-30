@@ -25,6 +25,17 @@
                 <%=tabledisplay.displayTable(user1)%>
         </table>    
         <br>
+        <%
+            String userChannel = request.getParameter("userChannel");
+            String channelName = request.getParameter("channelName");
+            if (userChannel != null && channelName != null) {
+        %>
+        <%=tabledisplay.displayFind(channelName, userChannel, user1)%>
+        <%
+            } else {
+
+            }
+        %>
         <h2>Find channels</h2>
         <form action="#" method="POST">
             Username:<input type="text" name="userChannel">
@@ -33,15 +44,8 @@
             <br>
             <input type="submit" name="findChannel">
         </form>
-        <%
-            String userChannel = request.getParameter("userChannel");
-            String channelName = request.getParameter("channelName");
-            if (userChannel != null && channelName != null) {
-        %>
-        <%=tabledisplay.displayFind(channelName, userChannel, user1)%>
-        <%
-            }
-        %>
+
+        <br>
         <h2>My Channels</h2>
         <form action="ChannelOps" method="POST">
             New Channel:<input type="text" name="newChannel"><input type="submit" value="Add Channel">
