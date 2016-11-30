@@ -33,6 +33,7 @@ public class ChannelOps extends HttpServlet {
         String channel = request.getParameter("channel");
         String user = request.getParameter("user");
         String channelID = request.getParameter("channelID");
+        String newChannel= request.getParameter("newChannel");
         String message = "";
         ChannelSLSB csb = new ChannelSLSB();
         if(channel!=null&&user!=null){
@@ -46,6 +47,9 @@ public class ChannelOps extends HttpServlet {
             csb.follow(Integer.parseInt(channelID), user);
             message = "followed channel";
             response.sendRedirect("main.jsp?message="+message);
+        }
+        if(newChannel!=null&&!newChannel.equals("")){
+            
         }
         
     }
