@@ -42,7 +42,7 @@
             }
         %>
         <h2>My Channels</h2>
-        <form>
+        <form action="ChannelOps" method="POST">
             New Channel:<input type="text" name="newChannel"><input type="submit" value="Add Channel">
         </form>
         
