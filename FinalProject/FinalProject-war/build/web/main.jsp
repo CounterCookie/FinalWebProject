@@ -48,6 +48,7 @@
         </form>
         <table border="1">
             <th>Channel</th><th>Last Twit</th><th>Delete</th>
+            <%=tabledisplay.displayOwnedChanell(user1)%>
         </table>
     </body>
 </html>

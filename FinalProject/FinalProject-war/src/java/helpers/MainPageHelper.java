@@ -54,10 +54,12 @@ public class MainPageHelper {
                 resulttable += "<td>" + date + " " + time + "</td>";
                 resulttable += "<td><a href='ChannelOps?channel=" + channelid + "&&user=" + user + "'>Unfollow</a></td>";
                 resulttable += "</tr>";
-                rs1.close();
+                
             }
             st.close();
+            rs1.close();
             rs.close();
+            
 
             conn.close();
         } catch (ClassNotFoundException ex) {
