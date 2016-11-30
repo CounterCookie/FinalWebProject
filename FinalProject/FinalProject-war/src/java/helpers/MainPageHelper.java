@@ -44,7 +44,7 @@ public class MainPageHelper {
             while (rs.next()) {
                 int channelid = rs.getInt(1);
                 resulttable += "<tr>";
-                resulttable += "<td>" + rs.getString(2) + "</td>";
+                resulttable += "<td><a href='twits.jsp?channel="+rs.getString(2)+"'>" + rs.getString(2) + "</a></td>";
                 resulttable += "<td>" + rs.getString(3) + "</td>";
                 String sql1 = "call channelLastTwitDateTime('" + rs.getInt(1) + "')";
                 rs1 = st1.executeQuery(sql1);
