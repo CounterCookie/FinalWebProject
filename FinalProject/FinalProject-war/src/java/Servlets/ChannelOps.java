@@ -37,6 +37,7 @@ public class ChannelOps extends HttpServlet {
         String channelID = request.getParameter("channelID");
         String newChannel = request.getParameter("newChannel");
         String message = "";
+        String delete=request.getParameter("delete");
         ChannelSLSB csb = new ChannelSLSB();
         if (channel != null && user != null) {
 
@@ -53,6 +54,11 @@ public class ChannelOps extends HttpServlet {
         if (newChannel != null && !newChannel.equals("")) {
             csb.channelAdd(newChannel, (String) session.getAttribute("user1"));
             message = "Channel added";
+            response.sendRedirect("main.jsp?message=" + message);
+        }
+        if(delete!=null){
+            csb.channelDelete(Integer.parseInt(delete));
+            message="Channel deleted";
             response.sendRedirect("main.jsp?message=" + message);
         }
 

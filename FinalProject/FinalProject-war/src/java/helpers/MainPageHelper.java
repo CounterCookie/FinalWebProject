@@ -147,7 +147,7 @@ public class MainPageHelper {
                 } else {
                     resulttable += "<td>No twits</td>";
                 }
-                resulttable += "<td>Delete</td>";
+                resulttable += "<td><a href='ChannelOps?delete="+rs.getInt(1)+"'>Delete</a></td>";
                 resulttable += "</tr>";
                 rs1.close();
             }
