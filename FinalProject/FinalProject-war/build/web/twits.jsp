@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="tabledisplay" class="helpers.MainPageHelper" />
 <!DOCTYPE html>
 <% String user = (String) session.getAttribute("user");
    String channel = request.getParameter("channel");%>
@@ -17,5 +18,9 @@
         <h1>Twits</h1>
         <p>Welcome <%=user%>, <a href="index.jsp">logout</a></p>
         <h1>Channel: <%=channel%></h1>
+        <p><b>Twits</b></p>
+        <table border="1">
+            
+        </table>
     </body>
 </html>

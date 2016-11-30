@@ -44,7 +44,7 @@ public class MainPageHelper {
             while (rs.next()) {
                 int channelid = rs.getInt(1);
                 resulttable += "<tr>";
-                resulttable += "<td><a href='twits.jsp?channel="+rs.getString(2)+"'>" + rs.getString(2) + "</a></td>";
+                resulttable += "<td><a href='twits.jsp?channel="+rs.getString(2)+"&&channelid="+rs.getInt(1)+"'>" + rs.getString(2) + "</a></td>";
                 resulttable += "<td>" + rs.getString(3) + "</td>";
                 String sql1 = "call channelLastTwitDateTime('" + rs.getInt(1) + "')";
                 rs1 = st1.executeQuery(sql1);
@@ -141,7 +141,7 @@ public class MainPageHelper {
             Time time = null;
             while (rs.next()) {
                 resulttable += "<tr>";
-                resulttable += "<td><a href='twits.jsp?channel="+rs.getString(2)+"'>" + rs.getString(2) + "</a></td>";
+                resulttable += "<td><a href='twits.jsp?channel="+rs.getString(2)+"&&channelid="+rs.getInt(1)+"'>" + rs.getString(2) + "</a></td>";
                 String sql1 = "call channelLastTwitDateTime(" + rs.getInt(1) + ")";
                 rs1 = st1.executeQuery(sql1);
                 if (rs1 != null && rs1.next()) {
@@ -160,6 +160,48 @@ public class MainPageHelper {
 
             st.close();
             st1.close();
+            rs.close();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resulttable;
+    }
+    public String ownerTable(){
+        
+        return null;
+    }
+    public String channelTable(int channel){
+        String resulttable = "";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            InitialContext ic = new InitialContext();
+            DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
+            Connection conn = ds.getConnection();
+
+            //Using Statement
+            String sql = "call twitGetTwitsForChannel('"+channel+"')";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            Date date = null;
+            Time time = null;
+            while (rs.next()) {
+                resulttable += "<tr>";
+                resulttable += "<td>"+rs.getString(2)+"</td>";
+                resulttable += "<td>"+rs.getDate(3)+" "+rs.getTime(3)+"</td>";
+                resulttable += "</tr>";
+            }
+
+            st.close();
+ 
             rs.close();
 
         } catch (ClassNotFoundException ex) {
