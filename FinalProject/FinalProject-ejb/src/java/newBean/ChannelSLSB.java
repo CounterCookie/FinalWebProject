@@ -23,13 +23,13 @@ import javax.sql.DataSource;
 @Stateless
 public class ChannelSLSB implements ChannelSLSBLocal {
 
-    public void unfollow(int channel, String user){
-        
+    public void unfollow(int channel, String user) {
+
         try {
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
             Connection conn = ds.getConnection();
-            
+
             CallableStatement cs = conn.prepareCall("call followDelete(?,?)");
             cs.setInt(1, channel);
             cs.setString(2, user);
@@ -41,7 +41,7 @@ public class ChannelSLSB implements ChannelSLSBLocal {
         } catch (SQLException ex) {
             Logger.getLogger(ChannelSLSB.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ChannelSLSB implements ChannelSLSBLocal {
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
             Connection conn = ds.getConnection();
-            
+
             CallableStatement cs = conn.prepareCall("call followAdd(?,?)");
             cs.setInt(1, channel);
             cs.setString(2, user);
@@ -63,7 +63,24 @@ public class ChannelSLSB implements ChannelSLSBLocal {
             Logger.getLogger(ChannelSLSB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
+
+    public void channelAdd(String channelName, String user) {
+        try {
+            InitialContext ic = new InitialContext();
+            DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
+            Connection conn = ds.getConnection();
+
+            CallableStatement cs = conn.prepareCall("call channelAdd(?,?)");
+            cs.setString(1, channelName);
+            cs.setString(2, user);
+            cs.executeQuery();
+            cs.close();
+            conn.close();
+        } catch (NamingException ex) {
+            Logger.getLogger(ChannelSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ChannelSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
