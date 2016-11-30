@@ -13,7 +13,10 @@ import javax.ejb.Local;
  */
 @Local
 public interface ChannelSLSBLocal {
+
     void unfollow(int channel, String user);
+
     void follow(int channel, String user);
+
     void channelAdd(String channelName, String user);
 }

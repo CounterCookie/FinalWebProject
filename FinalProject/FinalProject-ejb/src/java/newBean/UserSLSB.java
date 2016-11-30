@@ -29,12 +29,12 @@ public class UserSLSB implements UserSLSBLocal {
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
             Connection conn = ds.getConnection();
-            
+
             CallableStatement cs = conn.prepareCall("call userValidate(?,?)");
             cs.setString(1, user);
             cs.setString(2, pass);
             ResultSet rs = cs.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 return rs.getBoolean(1);
             }
         } catch (NamingException ex) {

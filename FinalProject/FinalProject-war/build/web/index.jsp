@@ -64,8 +64,8 @@
                             </form>
                             <%
                                 String message = request.getParameter("message");
-                                if(message!=null){
-                                    %>
+                                if (message != null) {
+                            %>
                             <p class="error_message"><%=message%></p>
                             <%
                                 }

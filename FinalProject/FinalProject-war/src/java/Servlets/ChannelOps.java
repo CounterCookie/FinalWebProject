@@ -35,31 +35,28 @@ public class ChannelOps extends HttpServlet {
         String channel = request.getParameter("channel");
         String user = request.getParameter("user");
         String channelID = request.getParameter("channelID");
-        String newChannel= request.getParameter("newChannel");
+        String newChannel = request.getParameter("newChannel");
         String message = "";
         ChannelSLSB csb = new ChannelSLSB();
-        if(channel!=null&&user!=null){
-            
+        if (channel != null && user != null) {
+
             csb.unfollow(Integer.parseInt(channel), user);
             message = "Unfollowed channel";
-            response.sendRedirect("main.jsp?message="+message);
+            response.sendRedirect("main.jsp?message=" + message);
         }
-        
-        if(channelID!=null){
+
+        if (channelID != null) {
             csb.follow(Integer.parseInt(channelID), user);
             message = "followed channel";
-            response.sendRedirect("main.jsp?message="+message);
+            response.sendRedirect("main.jsp?message=" + message);
         }
-        if(newChannel!=null&&!newChannel.equals("")){
-            csb.channelAdd(newChannel, (String)session.getAttribute("user1"));
-            message="Channel added";
-            response.sendRedirect("main.jsp?message="+message);
+        if (newChannel != null && !newChannel.equals("")) {
+            csb.channelAdd(newChannel, (String) session.getAttribute("user1"));
+            message = "Channel added";
+            response.sendRedirect("main.jsp?message=" + message);
         }
-        
+
     }
-    
-    
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
