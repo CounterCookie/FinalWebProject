@@ -48,11 +48,11 @@ public class MainPageHelper {
                 resulttable += "<td>" + rs.getString(3) + "</td>";
                 String sql1 = "call channelLastTwitDateTime('" + rs.getInt(1) + "')";
                 rs1 = st1.executeQuery(sql1);
-                if (rs1 != null && rs1.next()) {
-                    date = rs1.getDate(1);
-                    time = rs1.getTime(1);
+                if (date != null && time != null) {
+                    resulttable += "<td>" + date + " " + time + "</td>";
+                } else {
+                    resulttable += "<td>No twits</td>";
                 }
-                resulttable += "<td>" + date + " " + time + "</td>";
                 resulttable += "<td><a href='ChannelOps?channel=" + channelid + "&&user=" + user + "'>Unfollow</a></td>";
                 resulttable += "</tr>";
 
@@ -82,7 +82,7 @@ public class MainPageHelper {
     public String displayFind(String channelName, String user, String user1) {
         String resulttable = "";
         try {
-           
+
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
