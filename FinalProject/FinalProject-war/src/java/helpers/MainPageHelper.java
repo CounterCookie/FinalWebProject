@@ -98,9 +98,10 @@ public class MainPageHelper {
                 resulttable += "<td>" + rs.getString(3) + "</td>";
                 resulttable += "<td><a href='ChannelOps?channelID=" + rs.getInt(1) + "&&user=" + user1 + "'>follow</a></td>";
                 resulttable += "</tr>";
-                st.close();
-                rs.close();
+
             }
+            st.close();
+            rs.close();
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
@@ -147,7 +148,7 @@ public class MainPageHelper {
                 } else {
                     resulttable += "<td>No twits</td>";
                 }
-                resulttable += "<td><a href='ChannelOps?delete="+rs.getInt(1)+"'>Delete</a></td>";
+                resulttable += "<td><a href='ChannelOps?delete=" + rs.getInt(1) + "'>Delete</a></td>";
                 resulttable += "</tr>";
                 rs1.close();
             }
