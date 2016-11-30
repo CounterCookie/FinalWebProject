@@ -112,4 +112,8 @@ public class MainPageHelper {
 
         return resulttable;
     }
+    public String displayOwnedChanell(String user){
+        
+        return null;
+    }
 }
