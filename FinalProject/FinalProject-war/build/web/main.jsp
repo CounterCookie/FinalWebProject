@@ -45,6 +45,8 @@
         <form action="ChannelOps" method="POST">
             New Channel:<input type="text" name="newChannel"><input type="submit" value="Add Channel">
         </form>
-        
+        <table border="1">
+            <th>Channel</th><th>Last Twit</th><th>Delete</th>
+        </table>
     </body>
 </html>
