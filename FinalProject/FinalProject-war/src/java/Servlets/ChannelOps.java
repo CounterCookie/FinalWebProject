@@ -49,7 +49,9 @@ public class ChannelOps extends HttpServlet {
             response.sendRedirect("main.jsp?message="+message);
         }
         if(newChannel!=null&&!newChannel.equals("")){
-            
+            csb.channelAdd(newChannel, user);
+            message="Channel added";
+            response.sendRedirect("main.jsp?message="+message);
         }
         
     }
