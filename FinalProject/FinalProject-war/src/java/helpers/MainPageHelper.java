@@ -80,9 +80,9 @@ public class MainPageHelper {
     }
 
     public String displayFind(String channelName, String user, String user1) {
-        String resulttable = "<table border='1'>";
+        String resulttable = "";
         try {
-            resulttable += "<th>Channel Name</th><th>Username</th><th>Follow</th>";
+           
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
@@ -101,7 +101,6 @@ public class MainPageHelper {
                 st.close();
                 rs.close();
             }
-            resulttable += "</table>";
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
