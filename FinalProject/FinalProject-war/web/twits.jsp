@@ -16,6 +16,6 @@
     <body>
         <h1>Twits</h1>
         <p>Welcome <%=user%>, <a href="index.jsp">logout</a></p>
-        
+        <h1>Channel: <%=channel%></h1>
     </body>
 </html>

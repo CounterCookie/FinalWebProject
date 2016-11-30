@@ -141,7 +141,7 @@ public class MainPageHelper {
             Time time = null;
             while (rs.next()) {
                 resulttable += "<tr>";
-                resulttable += "<td>" + rs.getString(2) + "</td>";
+                resulttable += "<td><a href='twits.jsp?channel="+rs.getString(2)+"'>" + rs.getString(2) + "</a></td>";
                 String sql1 = "call channelLastTwitDateTime(" + rs.getInt(1) + ")";
                 rs1 = st1.executeQuery(sql1);
                 if (rs1 != null && rs1.next()) {
