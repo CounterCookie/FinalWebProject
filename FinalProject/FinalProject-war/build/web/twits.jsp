@@ -8,7 +8,9 @@
 <jsp:useBean id="tabledisplay" class="helpers.MainPageHelper" />
 <!DOCTYPE html>
 <% String user = (String) session.getAttribute("user");
-   String channel = request.getParameter("channel");%>
+   String channel = request.getParameter("channel");
+   String channelid = request.getParameter("channelid");
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,7 +22,9 @@
         <h1>Channel: <%=channel%></h1>
         <p><b>Twits</b></p>
         <table border="1">
-            
+            <th>Twit</th><th>Date/Time</th><th>Delete</th>
+            <%=tabledisplay.channelTable(Integer.parseInt(channelid))%>
         </table>
+        <a href="main.jsp">Back to main</a>
     </body>
 </html>
