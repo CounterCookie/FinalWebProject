@@ -83,4 +83,22 @@ public class ChannelSLSB implements ChannelSLSBLocal {
         }
     }
 
+    public void channelDelete(int channelid) {
+        try {
+            InitialContext ic = new InitialContext();
+            DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
+            Connection conn = ds.getConnection();
+
+            CallableStatement cs = conn.prepareCall("call channelDelete(?)");
+            cs.setInt(1, channelid);
+            cs.executeQuery();
+            cs.close();
+            conn.close();
+        } catch (NamingException ex) {
+            Logger.getLogger(ChannelSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ChannelSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

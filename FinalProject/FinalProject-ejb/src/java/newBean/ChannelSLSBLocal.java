@@ -19,4 +19,6 @@ public interface ChannelSLSBLocal {
     void follow(int channel, String user);
 
     void channelAdd(String channelName, String user);
+
+    void channelDelete(int channelid);
 }
