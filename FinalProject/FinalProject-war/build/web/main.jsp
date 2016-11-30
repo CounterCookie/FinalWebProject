@@ -41,6 +41,10 @@
                 <%
             }
         %>
+        <h2>My Channels</h2>
+        <form>
+            New Channel:<input type="text" name="newChannel"><input type="submit" value="Add Channel">
+        </form>
         
     </body>
 </html>
