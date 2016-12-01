@@ -93,4 +93,20 @@ public class UserSLSB implements UserSLSBLocal {
             Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void adminStatus(String user, int type){
+         try {
+            InitialContext ic = new InitialContext();
+            DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
+            Connection conn = ds.getConnection();
+
+            CallableStatement cs = conn.prepareCall("call userSetType('"+user+"','"+type+"')");
+            cs.executeQuery();
+            cs.close();
+            conn.close();
+        } catch (NamingException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

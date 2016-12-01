@@ -33,22 +33,25 @@ public class LoginOps extends HttpServlet {
             throws ServletException, IOException {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
-        String message ="";
+        String message = "";
         HttpSession session = request.getSession();
         UserSLSB validate = new UserSLSB();
-        if(user!=null&&pass!=null&&!user.equals("")&&!pass.equals("")){
-            if(validate.validateUser(user, pass)){
-                session.setAttribute("user", user);
-                response.sendRedirect("main.jsp?message="+message);
+        if (user != null && pass != null && !user.equals("") && !pass.equals("")) {
+            session.setAttribute("user", user);
+            if (validate.validateUser(user, pass)) {
+                if (validate.userAdmin(user)) {
+                    response.sendRedirect("admin.jsp");
+                } else {
+
+                    response.sendRedirect("main.jsp?message=" + message);
+                }
+            } else {
+                message = "Username or password is invalid";
+                response.sendRedirect("index.jsp?message=" + message);
             }
-            else{
-                message="Username or password is invalid";
-                response.sendRedirect("index.jsp?message="+message);
-            }
-        }
-        else{
-            message ="Both fields required!";
-            response.sendRedirect("index.jsp?message="+message);
+        } else {
+            message = "Both fields required!";
+            response.sendRedirect("index.jsp?message=" + message);
         }
     }
 

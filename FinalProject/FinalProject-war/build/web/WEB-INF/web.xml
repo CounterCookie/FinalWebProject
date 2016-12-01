@@ -8,6 +8,14 @@
         <servlet-name>ChannelOps</servlet-name>
         <servlet-class>Servlets.ChannelOps</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserOps2</servlet-name>
+        <servlet-class>Servlets.UserOps2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminToggle</servlet-name>
+        <servlet-class>Servlets.adminToggle</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginOps</servlet-name>
         <url-pattern>/LoginOps</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>ChannelOps</servlet-name>
         <url-pattern>/ChannelOps</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserOps2</servlet-name>
+        <url-pattern>/UserOps2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminToggle</servlet-name>
+        <url-pattern>/adminToggle</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

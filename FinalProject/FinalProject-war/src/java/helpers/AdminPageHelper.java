@@ -6,11 +6,9 @@
 package helpers;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
@@ -39,19 +37,19 @@ public class AdminPageHelper {
                 resulttable += "<tr>";
                 resulttable += "<td>" + rs.getString(1) + "</td>";
                 if(rs.getInt(3)==1){
-                    resulttable += "<td><a href='UserOps?status="+rs.getInt(3)+"&&userAdmin="+rs.getString(1)+"'>Admin</a></td>";
+                    resulttable += "<td><a href='adminToggle?status="+rs.getInt(3)+"&&userAdmin="+rs.getString(1)+"'>Admin</a></td>";
                 }
                 else{
-                    resulttable += "<td><a href='UserOps?status="+rs.getInt(3)+"'>Normal</a></td>";
+                    resulttable += "<td><a href='adminToggle?status="+rs.getInt(3)+"'>Normal</a></td>";
                 }
                 
                 if(rs.getInt(4)==1){
-                    resulttable += "<td><a href='UserOps?status="+rs.getInt(4)+"'>Yes</a></td>";
+                    resulttable += "<td><a href='UserOps2?status="+rs.getInt(4)+"'>Yes</a></td>";
                 } else{
-                    resulttable += "<td><a href='UserOps?status="+rs.getInt(4)+"'>No</a></td>";
+                    resulttable += "<td><a href='UserOps2?status="+rs.getInt(4)+"'>No</a></td>";
                 }
-                resulttable+="<td><a href='UserOps?user="+rs.getString(1)+"'>Reset</a></td>";
-                resulttable+="<td><a href='UserOps?delete="+rs.getString(1)+"'>Delete</a></td>";
+                resulttable+="<td><a href='UserOps2?user="+rs.getString(1)+"'>Reset</a></td>";
+                resulttable+="<td><a href='UserOps2?delete="+rs.getString(1)+"'>Delete</a></td>";
                 
                  resulttable += "</tr>";
             }

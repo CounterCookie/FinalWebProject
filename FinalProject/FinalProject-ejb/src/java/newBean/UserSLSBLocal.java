@@ -16,4 +16,5 @@ public interface UserSLSBLocal{
     boolean validateUser(String user, String pass);
     boolean userAdmin(String user);
     void addUser(String user, String pass, int admin, int lock);
+    void adminStatus(String user, int type);
 }

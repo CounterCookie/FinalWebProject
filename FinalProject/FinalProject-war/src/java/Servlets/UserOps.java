@@ -62,6 +62,17 @@ public class UserOps extends HttpServlet {
             message = "Passwords do not match!";
             response.sendRedirect("admin.jsp?message=" + message);
         }
+        
+        if(status!=null){
+            if(status.equals(1)){
+                usb.adminStatus(userAdmin, 0);
+                 response.sendRedirect("admin.jsp");
+            }
+            else{
+                usb.adminStatus(userAdmin, 1);
+                response.sendRedirect("admin.jsp");
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
