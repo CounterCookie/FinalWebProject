@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="tabledisplay" class="helpers.AdminPageHelper" />
 <!DOCTYPE html>
 <html>
     <%String user =(String) session.getAttribute("user");
@@ -29,9 +30,15 @@
             Username:<input type="text" name="username"><br>
             Password:<input type="text" name="password"><br>
             Confirm:<input type="text" name="confirm"><br>
-            Is Admin <input type="checkbox" name="admin" value="true"><br>
-            Is Locked <input type="checkbox" name="locked" value="true"><br>
+            Is Admin <input type="checkbox" name="admin" value="1"><br>
+            Is Locked <input type="checkbox" name="locked" value="1"><br>
             <input type="submit" value="Add">
         </form>
+        
+        <h2>User Details</h2>
+        <table border="1">
+            <th>Username</th><th>Type</th><th>Locked</th><th>Reset PW</th><th>Delete</th>
+        <%=tabledisplay.displayTable()%>
+        </table>
     </body>
 </html>

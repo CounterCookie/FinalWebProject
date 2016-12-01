@@ -8,14 +8,6 @@
         <servlet-name>ChannelOps</servlet-name>
         <servlet-class>Servlets.ChannelOps</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>TwitOps</servlet-name>
-        <servlet-class>Servlets.TwitOps</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserOps</servlet-name>
-        <servlet-class>Servlets.UserOps</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LoginOps</servlet-name>
         <url-pattern>/LoginOps</url-pattern>
@@ -23,14 +15,6 @@
     <servlet-mapping>
         <servlet-name>ChannelOps</servlet-name>
         <url-pattern>/ChannelOps</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TwitOps</servlet-name>
-        <url-pattern>/TwitOps</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UserOps</servlet-name>
-        <url-pattern>/UserOps</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

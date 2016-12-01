@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import newBean.UserSLSB;
 
 /**
  *
@@ -34,14 +35,32 @@ public class UserOps extends HttpServlet {
         String confirm = request.getParameter("confirm");
         String admin = request.getParameter("admin");
         String lock = request.getParameter("locked");
+        String status = request.getParameter("status");
+        String userAdmin = request.getParameter("userAdmin");
+        UserSLSB usb = new UserSLSB();
+        String message = "";
+
         if (admin == null) {
-            admin = "false";
+            admin = "0";
+
         }
         if (lock == null) {
-            lock = "false";
+            lock = "0";
         }
         if (username != null && password != null && confirm != null) {
+            if (password.equals(confirm)) {
+                usb.addUser(username, password, Integer.parseInt(admin), Integer.parseInt(lock));
+                message = "User added";
+                response.sendRedirect("admin.jsp?message=" + message);
 
+            } else {
+                message = "Passwords do not match!";
+                response.sendRedirect("admin.jsp?message=" + message);
+            }
+
+        } else {
+            message = "Passwords do not match!";
+            response.sendRedirect("admin.jsp?message=" + message);
         }
     }
 

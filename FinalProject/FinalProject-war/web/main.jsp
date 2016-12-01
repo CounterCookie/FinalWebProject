@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <%
-        String user1 = (String) session.getAttribute("user");
+        String user1 =(String) session.getAttribute("user");
         session.setAttribute("user1", user1);
     %>
     <body>
@@ -22,10 +22,9 @@
         <h2>Channels I'm Following</h2>
         <table border="1">
             <th>Channel</th><th>User</th><th>Last Twit</th><th>Unfollow</th>
-                <%=tabledisplay.displayTable(user1)%>
+            <%=tabledisplay.displayTable(user1)%>
         </table>    
         <br>
-
         <h2>Find channels</h2>
         <form action="#" method="POST">
             Username:<input type="text" name="userChannel">
@@ -35,27 +34,21 @@
             <input type="submit" name="findChannel">
         </form>
         <%
-            String userChannel = request.getParameter("userChannel");
+            String userChannel= request.getParameter("userChannel");
             String channelName = request.getParameter("channelName");
-        %> 
-        <% if (userChannel != null && channelName != null) {
-        %>
-        <table border="1">
-            <th>Channel Name</th><th>Username</th><th>Follow</th>
+            if(userChannel!=null&&channelName!=null){
+                %>
                 <%=tabledisplay.displayFind(channelName, userChannel, user1)%>
-        </table>
-        <%
+                <%
             }
         %>
-
-        <br>
         <h2>My Channels</h2>
         <form action="ChannelOps" method="POST">
             New Channel:<input type="text" name="newChannel"><input type="submit" value="Add Channel">
         </form>
         <table border="1">
             <th>Channel</th><th>Last Twit</th><th>Delete</th>
-                <%=tabledisplay.displayOwnedChanell(user1)%>
+            <%=tabledisplay.displayOwnedChanell(user1)%>
         </table>
     </body>
 </html>

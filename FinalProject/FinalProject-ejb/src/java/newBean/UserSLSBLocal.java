@@ -12,7 +12,8 @@ import javax.ejb.Local;
  * @author 695923
  */
 @Local
-public interface UserSLSBLocal {
-
+public interface UserSLSBLocal{
     boolean validateUser(String user, String pass);
+    boolean userAdmin(String user);
+    void addUser(String user, String pass, int admin, int lock);
 }

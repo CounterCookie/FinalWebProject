@@ -98,7 +98,7 @@ public class ChannelSLSB implements ChannelSLSBLocal {
             Logger.getLogger(ChannelSLSB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ChannelSLSB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+}
     }
 
 }

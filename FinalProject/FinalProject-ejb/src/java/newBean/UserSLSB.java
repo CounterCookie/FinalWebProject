@@ -29,12 +29,12 @@ public class UserSLSB implements UserSLSBLocal {
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
             Connection conn = ds.getConnection();
-
+            
             CallableStatement cs = conn.prepareCall("call userValidate(?,?)");
             cs.setString(1, user);
             cs.setString(2, pass);
             ResultSet rs = cs.executeQuery();
-            if (rs.next()) {
+            if(rs.next()){
                 return rs.getBoolean(1);
             }
         } catch (NamingException ex) {
@@ -60,7 +60,7 @@ public class UserSLSB implements UserSLSBLocal {
                     rs.close();
                     conn.close();
                     return true;
-                }
+}
             }
             rs.close();
             conn.close();
@@ -71,5 +71,26 @@ public class UserSLSB implements UserSLSBLocal {
         }
 
         return status;
+    }
+    
+    public void addUser(String user, String pass, int admin, int lock){
+         try {
+            InitialContext ic = new InitialContext();
+            DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
+            Connection conn = ds.getConnection();
+
+            CallableStatement cs = conn.prepareCall("call userAdd(?,?,?,?)");
+            cs.setString(1, user);
+            cs.setString(2, pass);
+            cs.setInt(1, admin);
+            cs.setInt(4, lock);
+            ResultSet rs = cs.executeQuery();
+            rs.close();
+            conn.close();
+        } catch (NamingException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
