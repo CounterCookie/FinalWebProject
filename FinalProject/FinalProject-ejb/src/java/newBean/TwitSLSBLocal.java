@@ -14,4 +14,5 @@ import javax.ejb.Local;
 @Local
 public interface TwitSLSBLocal {
     void addTwit(int channel, String twit);
+    void delTwit(int twit);
 }

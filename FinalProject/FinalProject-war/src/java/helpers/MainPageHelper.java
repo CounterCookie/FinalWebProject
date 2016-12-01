@@ -194,7 +194,7 @@ public class MainPageHelper {
                 resulttable += "<tr>";
                 resulttable += "<td>"+rs.getString(2)+"</td>";
                 resulttable += "<td>"+rs.getDate(3)+" "+rs.getTime(3)+"</td>";
-                resulttable+="<td><a href='#'>Delete</a></td>";
+                resulttable+="<td><a href='TwitOps?delete="+rs.getInt(1)+"'>Delete</a></td>";
                 resulttable += "</tr>";
             }
 

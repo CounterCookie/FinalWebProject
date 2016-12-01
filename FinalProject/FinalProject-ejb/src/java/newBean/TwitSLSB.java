@@ -44,4 +44,24 @@ public class TwitSLSB implements TwitSLSBLocal {
         
 
     }
+    
+    public void delTwit(int twit){
+        try {
+            InitialContext ic = new InitialContext();
+            DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
+            Connection conn = ds.getConnection();
+
+            CallableStatement cs = conn.prepareCall("call twitDelete(?)");
+            cs.setInt(1, twit);
+            cs.executeQuery();
+            cs.close();
+            conn.close();
+        } catch (NamingException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+    }
 }
