@@ -39,7 +39,12 @@ public class LoginOps extends HttpServlet {
         if (user != null && pass != null && !user.equals("") && !pass.equals("")) {
             if (validate.validateUser(user, pass)) {
                 session.setAttribute("user", user);
-                response.sendRedirect("main.jsp?message=" + message);
+                if(validate.userAdmin(user)){
+                    response.sendRedirect("admin.jsp?message=" + message);
+                }
+                else{
+                    response.sendRedirect("main.jsp?message=" + message);
+                }
             } else {
                 message = "Username or password is invalid";
                 response.sendRedirect("index.jsp?message=" + message);

@@ -44,4 +44,32 @@ public class UserSLSB implements UserSLSBLocal {
         }
         return status;
     }
+
+    public boolean userAdmin(String user) {
+        boolean status = false;
+        try {
+            InitialContext ic = new InitialContext();
+            DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
+            Connection conn = ds.getConnection();
+
+            CallableStatement cs = conn.prepareCall("call userGetType(?)");
+            cs.setString(1, user);
+            ResultSet rs = cs.executeQuery();
+            if (rs.next()) {
+                if (rs.getInt(1) == 1) {
+                    rs.close();
+                    conn.close();
+                    return true;
+                }
+            }
+            rs.close();
+            conn.close();
+        } catch (NamingException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return status;
+    }
 }
