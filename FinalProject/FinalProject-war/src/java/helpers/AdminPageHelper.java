@@ -30,7 +30,7 @@ public class AdminPageHelper {
             Connection conn = ds.getConnection();
 
             //Using Statement
-            String sql = "call usergetalldata()";
+            String sql = "call userGetAllData()";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -40,16 +40,16 @@ public class AdminPageHelper {
                     resulttable += "<td><a href='adminToggle?status="+rs.getInt(3)+"&&userAdmin="+rs.getString(1)+"'>Admin</a></td>";
                 }
                 else{
-                    resulttable += "<td><a href='adminToggle?status="+rs.getInt(3)+"'>Normal</a></td>";
+                    resulttable += "<td><a href='adminToggle?status="+rs.getInt(3)+"&&userAdmin="+rs.getString(1)+"'>Normal</a></td>";
                 }
                 
                 if(rs.getInt(4)==1){
-                    resulttable += "<td><a href='UserOps2?status="+rs.getInt(4)+"'>Yes</a></td>";
+                    resulttable += "<td><a href='adminToggle?statusLock="+rs.getInt(4)+"&&userLock="+rs.getString(1)+"'>Yes</a></td>";
                 } else{
-                    resulttable += "<td><a href='UserOps2?status="+rs.getInt(4)+"'>No</a></td>";
+                    resulttable += "<td><a href='adminToggle?statusLock="+rs.getInt(4)+"&&userLock="+rs.getString(1)+"'>No</a></td>";
                 }
-                resulttable+="<td><a href='UserOps2?user="+rs.getString(1)+"'>Reset</a></td>";
-                resulttable+="<td><a href='UserOps2?delete="+rs.getString(1)+"'>Delete</a></td>";
+                resulttable+="<td><a href='adminToggle?reset="+rs.getString(1)+"'>Reset</a></td>";
+                resulttable+="<td><a href='adminToggle?delete="+rs.getString(1)+"'>Delete</a></td>";
                 
                  resulttable += "</tr>";
             }

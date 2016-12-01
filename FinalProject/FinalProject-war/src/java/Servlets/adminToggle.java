@@ -32,23 +32,45 @@ public class adminToggle extends HttpServlet {
             throws ServletException, IOException {
         String status = request.getParameter("status");
         String userAdmin = request.getParameter("userAdmin");
+        String statusLock = request.getParameter("statusLock");
+        String userLocked = request.getParameter("userLock");
+        String reset = request.getParameter("reset");
+        String delete = request.getParameter("delete");
         String message = "";
         UserSLSB usb = new UserSLSB();
         if (status != null) {
-            if (status.equals(1)) {
-
-                usb.adminStatus(userAdmin, 0);
-                message = "admin status changed";
-                response.sendRedirect("admin.jsp?message=" + message);
-         
-
-            } else {
-
-                usb.adminStatus(userAdmin, 1);
-                message = "admin status changed";
-                response.sendRedirect("admin.jsp?message=" + message);
+            if (status.equals("1")) {
+                message="admin status changed";
+                usb.adminStatus(userAdmin, false);
+                response.sendRedirect("admin.jsp?message="+message);
             }
-
+            if (status.equals("0")) {
+                message="admin status changed";
+                usb.adminStatus(userAdmin, true);
+                response.sendRedirect("admin.jsp?message="+message);
+            }
+        }
+        if (statusLock != null) {
+            if (statusLock.equals("1")) {
+                message="lock status changed";
+                usb.lockStatus(userLocked, false);
+                response.sendRedirect("admin.jsp?message="+message);
+            }
+            if (statusLock.equals("0")) {
+                message="lock status changed";
+                usb.lockStatus(userLocked, true);
+                response.sendRedirect("admin.jsp?message="+message);
+            }
+        }
+        if (reset != null) {
+            usb.resetPassword(reset);
+            message = "password rest";
+            response.sendRedirect("admin.jsp?message=" + message);
+        }
+        if (delete != null) {
+            usb.deleteUser(delete);
+            message = "User deleted";
+            response.sendRedirect("admin.jsp?message=" + message);
         }
     }
 

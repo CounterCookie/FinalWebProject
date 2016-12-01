@@ -26,7 +26,7 @@
         <p>Welcome, <%=user%> <a href="main.jsp">Go to channels</a> <a href="index.jsp"> Logout</a></p>
         
         <h2>Add New User</h2>
-        <form action="UserOps" method="Post">
+        <form action="UserOps2" method="Post">
             Username:<input type="text" name="username"><br>
             Password:<input type="text" name="password"><br>
             Confirm:<input type="text" name="confirm"><br>

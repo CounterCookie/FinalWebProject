@@ -82,7 +82,7 @@ public class UserSLSB implements UserSLSBLocal {
             CallableStatement cs = conn.prepareCall("call userAdd(?,?,?,?)");
             cs.setString(1, user);
             cs.setString(2, pass);
-            cs.setInt(1, admin);
+            cs.setInt(3, admin);
             cs.setInt(4, lock);
             ResultSet rs = cs.executeQuery();
             rs.close();
@@ -93,15 +93,72 @@ public class UserSLSB implements UserSLSBLocal {
             Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void adminStatus(String user, int type){
-         try {
+    @Override
+    public void adminStatus(String user, boolean type){
+        try {
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
             Connection conn = ds.getConnection();
-
-            CallableStatement cs = conn.prepareCall("call userSetType('"+user+"','"+type+"')");
-            cs.executeQuery();
-            cs.close();
+            System.out.println(type);
+            CallableStatement cs = conn.prepareCall("call userSetType(?,?)");
+            cs.setString(1, user);
+            cs.setBoolean(2, type);
+            ResultSet rs = cs.executeQuery();
+            rs.close();
+            conn.close();
+        } catch (NamingException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void lockStatus(String user, boolean type){
+        try {
+            InitialContext ic = new InitialContext();
+            DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
+            Connection conn = ds.getConnection();
+            System.out.println(type);
+            CallableStatement cs = conn.prepareCall("call userSetLocked(?,?)");
+            cs.setString(1, user);
+            cs.setBoolean(2, type);
+            ResultSet rs = cs.executeQuery();
+            rs.close();
+            conn.close();
+        } catch (NamingException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void resetPassword(String user){
+        try {
+            InitialContext ic = new InitialContext();
+            DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
+            Connection conn = ds.getConnection();
+            CallableStatement cs = conn.prepareCall("call userResetPassword(?)");
+            cs.setString(1, user);
+            ResultSet rs = cs.executeQuery();
+            rs.close();
+            conn.close();
+        } catch (NamingException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public void deleteUser(String user){
+        try {
+            InitialContext ic = new InitialContext();
+            DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
+            Connection conn = ds.getConnection();
+            CallableStatement cs = conn.prepareCall("call userDelete(?)");
+            cs.setString(1, user);
+            ResultSet rs = cs.executeQuery();
+            rs.close();
             conn.close();
         } catch (NamingException ex) {
             Logger.getLogger(UserSLSB.class.getName()).log(Level.SEVERE, null, ex);
