@@ -12,6 +12,6 @@ import javax.ejb.Local;
  * @author 695923
  */
 @Local
-public interface TwitOpsLocal {
+public interface TwitSLSBLocal {
     void addTwit(int channel, String twit);
 }
