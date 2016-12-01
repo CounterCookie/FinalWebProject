@@ -8,9 +8,9 @@
 <jsp:useBean id="tabledisplay" class="helpers.MainPageHelper" />
 <!DOCTYPE html>
 <% String user = (String) session.getAttribute("user");
-   String channel = request.getParameter("channel");
-   String channelid = request.getParameter("channelid");
-%>
+    String channel = request.getParameter("channel");
+    String channelid = request.getParameter("channelid");
+    boolean status = tabledisplay.checkOwner(Integer.parseInt(channelid), user);%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,9 +21,23 @@
         <p>Welcome <%=user%>, <a href="index.jsp">logout</a></p>
         <h1>Channel: <%=channel%></h1>
         <p><b>Twits</b></p>
+        <%if (status) {
+        %><form action="TwitOps" method="POST">
+            Twit:<input type="text" name="newTwit"><input type="submit" name="Add">
+        </form><%
+            }%>
+
         <table border="1">
-            <th>Twit</th><th>Date/Time</th><th>Delete</th>
+            <%
+                if (status) {
+            %>
+            <%=tabledisplay.ownerTable(Integer.parseInt(channelid))%>
+            <% } else {
+            %>
             <%=tabledisplay.channelTable(Integer.parseInt(channelid))%>
+            <%}
+            %>
+
         </table>
         <a href="main.jsp">Back to main</a>
     </body>
