@@ -10,7 +10,8 @@
 <% String user = (String) session.getAttribute("user");
     String channel = request.getParameter("channel");
     String channelid = request.getParameter("channelid");
-    request.setAttribute("channelid", channelid);
+    request.getSession().setAttribute("channelid", channelid);
+    request.getSession().setAttribute("channel", channel);
     boolean status = tabledisplay.checkOwner(Integer.parseInt(channelid), user);%>
 <html>
     <head>

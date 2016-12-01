@@ -30,11 +30,14 @@ public class TwitOps extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String channelid = request.getParameter("channelid");
+        String channelid =(String) request.getSession().getAttribute("channelid");
+        String channel =(String) request.getSession().getAttribute("channel");
+        int id =Integer.parseInt(channelid);
         String twit = request.getParameter("newTwit");
-        if(twit!=null){
+        if(channelid!=null&&twit!=null){
             TwitSLSB twsb = new TwitSLSB();
-            twsb.addTwit(Integer.parseInt(channelid), twit);
+            twsb.addTwit(id, twit);
+            response.sendRedirect("twits.jsp?channelid="+channelid+"&&channel="+channel);
  
         }
     }

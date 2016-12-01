@@ -23,8 +23,8 @@ import javax.sql.DataSource;
 @Stateless
 public class TwitSLSB implements TwitSLSBLocal {
 
+    @Override
     public void addTwit(int channel, String twit){
-        boolean status = false;
         try {
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("jdbc/twitsdbPool");
