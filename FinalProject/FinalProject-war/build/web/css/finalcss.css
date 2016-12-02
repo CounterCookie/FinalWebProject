@@ -213,7 +213,7 @@ form.login a:hover
     outline:none;
 }
 .box input[type="submit"]{
-    background:rgba(255, 79, 79, 0.68);
+    background: #5594ca;
     border:5px;
     color:#fff;
     padding:10px;
@@ -227,8 +227,8 @@ form.login a:hover
 }
 .box input[type="submit"]:hover{
     background:#fff;
-    border:3px solid rgba(255, 79, 79, 0.68);
-    color: rgba(255, 79, 79, 0.68);
+    border:3px solid #5594ca;
+    color: #5594ca;
 }
 .box button:active{
     background:#27ae60;
@@ -345,4 +345,31 @@ body{
 .box p.error_message{
     font-family: roboto;
     color: #fc2d2d;
+}
+
+.notification{
+    position:fixed;
+    top: 20px;
+    right:0;
+    background-color:#FF4136;
+    padding: 20px;
+    color: #fff;
+    font-size:21px;
+    display:none;
+}
+.notification-success{
+  background-color:#3D9970;
+}
+
+.notification-show{
+    display:block!important;
+}
+
+/*Loged in*/
+.logged-in{
+  display:none;
+}
+.logged-in h1{
+  margin:0;
+  font-weight:300;
 }

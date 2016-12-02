@@ -59,15 +59,15 @@ public class AdminPageHelper {
 
             conn.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainPageHelper2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {
-            Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainPageHelper2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainPageHelper2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainPageHelper2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(MainPageHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainPageHelper2.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return resulttable;

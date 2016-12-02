@@ -59,7 +59,7 @@ public class UserOps2 extends HttpServlet {
             }
 
         } else {
-            message = "Passwords do not match!";
+            message = "Please fill in all fields!";
             response.sendRedirect("admin.jsp?message=" + message);
         }
         

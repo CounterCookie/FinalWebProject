@@ -33,25 +33,37 @@ public class LoginOps extends HttpServlet {
             throws ServletException, IOException {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
+        String logout = request.getParameter("logout");
         String message = "";
+        UserSLSB usb = new UserSLSB();
         HttpSession session = request.getSession();
         UserSLSB validate = new UserSLSB();
         if (user != null && pass != null && !user.equals("") && !pass.equals("")) {
             session.setAttribute("user", user);
             if (validate.validateUser(user, pass)) {
-                if (validate.userAdmin(user)) {
+                if (validate.userLocked(user)) {
+                    session.invalidate();
+                    message = "Account has been locked";
+                    response.sendRedirect("index.jsp?message=" + message);
+                } else if (validate.userAdmin(user)) {
+                    session.setAttribute("admin", true);
                     response.sendRedirect("admin.jsp");
                 } else {
-
                     response.sendRedirect("main.jsp?message=" + message);
                 }
+
             } else {
-                message = "Username or password is invalid";
-                response.sendRedirect("index.jsp?message=" + message);
+                request.setAttribute("alert", usb.showInvalid());
+                request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             }
+        } else if (logout != null) {
+            session.invalidate();
+            request.setAttribute("alert", usb.showLogout());
+            request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } else {
-            message = "Both fields required!";
-            response.sendRedirect("index.jsp?message=" + message);
+
+            request.setAttribute("alert", usb.showLogin());
+            request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         }
     }
 

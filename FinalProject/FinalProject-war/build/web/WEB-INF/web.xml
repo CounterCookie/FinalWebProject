@@ -16,6 +16,10 @@
         <servlet-name>adminToggle</servlet-name>
         <servlet-class>Servlets.adminToggle</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>registerOps</servlet-name>
+        <servlet-class>Servlets.registerOps</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginOps</servlet-name>
         <url-pattern>/LoginOps</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>adminToggle</servlet-name>
         <url-pattern>/adminToggle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registerOps</servlet-name>
+        <url-pattern>/registerOps</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
